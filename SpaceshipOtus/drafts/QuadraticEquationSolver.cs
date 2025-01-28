@@ -6,9 +6,19 @@
         {
             const double epsilon = 1e-10;
 
+            if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c))
+            {
+                throw new ArgumentException("Parametrs cannot be NaN");
+            }
+
+            if (double.IsInfinity(a) || double.IsInfinity(b) || double.IsInfinity(c))
+            {
+                throw new ArgumentException("Parametrs cannot be Infinity");
+            }
+
             if (Math.Abs(a) < epsilon)
             {
-                throw new ArgumentException("Коэффициент 'a' не может быть равен нулю.");
+                throw new ArgumentException("Parametr 'a' cannot be equal to zero");
             }
 
             double discriminant = b * b - 4 * a * c;
