@@ -26,6 +26,8 @@ namespace SpaceshipOtus.Homework4
 
             if (velocity == null)
                 throw new InvalidOperationException("Velocity cannot be null.");
+
+            _uObject.SetProperty("Location", Vector.Plus(location, velocity));
         }
     }
 
@@ -42,6 +44,8 @@ namespace SpaceshipOtus.Homework4
         {
             int angle = (int)_uObject.GetProperty("Angle");
             int angularVelocity = (int)_uObject.GetProperty("AngularVelocity");
+
+            _uObject.SetProperty("Angle", angle + angularVelocity);
         }
     }
 
@@ -78,7 +82,9 @@ namespace SpaceshipOtus.Homework4
             int fuel = (int)_uObject.GetProperty("Fuel");
             int fuelConsumption = (int)_uObject.GetProperty("FuelConsumption");
 
-            _uObject.SetProperty("Fuel", fuel - fuelConsumption);
+            fuel = (fuel - fuelConsumption) < 0 ? 0 : fuel - fuelConsumption;
+
+            _uObject.SetProperty("Fuel", fuel);
         }
     }
 
@@ -94,7 +100,7 @@ namespace SpaceshipOtus.Homework4
         public override void Execute()
         {
             Vector velocity = (Vector)_uObject.GetProperty("Velocity");
-            int angle = ((Angle)_uObject.GetProperty("Angle")).d;
+            int angle = (int)_uObject.GetProperty("Angle");
 
             // Пример изменения скорости на основе угла поворота
             velocity.X = (int)(velocity.X * Math.Cos(angle * Math.PI / 180));

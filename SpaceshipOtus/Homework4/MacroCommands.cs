@@ -36,7 +36,6 @@ namespace SpaceshipOtus.Homework4
                 new BurnFuelCommand(uObject)
                 ])
         {
-
         }
     }
 
